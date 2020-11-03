@@ -16,6 +16,20 @@ function addStore (addStoreArray, addStoreLocation, addMinCust, addMaxCust, addA
             return Math.floor(Math.random() * (max - min + 1) + min);
         },
         salesPerHour: [],
+        render: function(){
+            var listParent = document.getElementById('sCookiesSold');
+            var createList = document.createElement('ul');
+            createList.setAttribute('id', this.storeLocation);
+            createList.textContent = this.storeLocation;
+            listParent.appendChild(createList);
+            
+            for(var i = 0; i < this.salesPerHour.length; i++){
+                var listElementParent = document.getElementById(this.storeLocation);
+                var createListElement = document.createElement('li')
+                createListElement.textContent = this.salesPerHour[i];
+                listElementParent.appendChild(createListElement);
+            }
+        },
     }
 
     addStoreArray.push(storeObject)
@@ -41,6 +55,8 @@ function cookiesSoldPerHour(csphStoreArray, csphOpening, csphClosing){
         currHour = csphOpening;
         dispHour = currHour;
         strAMPM = 'AM';
+        cookiesSold = 0;
+        cookiesSoldTotal = 0;
 
         // console.log('Entering For loop');
 
@@ -78,4 +94,7 @@ storeArray = addStore(storeArray,'Lima',2,16,4.6);
 
 cookiesSoldPerHour(storeArray, 6, 20);
 
+for(var i = 0; i < storeArray.length; i++){
+    storeArray[i].render();
+}
 // console.log(cookiesSoldPerHour(storeArray,6,20));
