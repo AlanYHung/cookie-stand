@@ -4,42 +4,6 @@ var storeArray = [];
 var allStoreHourHeader = [];
 var newStore;
 
-function addStore (addStoreLocation, addOpenHour, addCloseHour, addMinCust, addMaxCust, addAvgSales){
-    this.storeLocation = addStoreLocation;
-    this.minCust = addMinCust;
-    this.maxCust = addMaxCust;
-    this.avgSales = addAvgSales;
-    this.openHour = addOpenHour;
-    this.closeHour = addCloseHour;
-    this.salesPerHour = [];
-    
-    // render: function(){
-    //     var listParent = document.getElementById('sCookiesSold');
-    //     var createList = document.createElement('ul');
-    //     createList.setAttribute('id', this.storeLocation);
-    //     createList.textContent = this.storeLocation;
-    //     listParent.appendChild(createList);
-        
-    //     for(var i = 0; i < this.salesPerHour.length; i++){
-    //         var listElementParent = document.getElementById(this.storeLocation);
-    //         var createListElement = document.createElement('li')
-    //         createListElement.textContent = this.salesPerHour[i];
-    //         listElementParent.appendChild(createListElement);
-    //     }
-    // },
-
-    storeArray.push(this);
-    return storeArray;
-}
-
-addStore.prototype.randCustPerHour = function(){
-    //Code Taken from
-    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-    var min = Math.ceil(this.minCust);
-    var max = Math.floor(this.maxCust);
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
 function hourParse (hpStartHour, hpEndHour){
     var currHour = hpStartHour;
     var strAMPM = 'AM';
@@ -67,6 +31,57 @@ function hourParse (hpStartHour, hpEndHour){
     return hpStoreHourBr
 }
 
+function addStore (addStoreLocation, addOpenHour, addCloseHour, addMinCust, addMaxCust, addAvgSales){
+    this.storeLocation = addStoreLocation;
+    this.minCust = addMinCust;
+    this.maxCust = addMaxCust;
+    this.avgSales = addAvgSales;
+    this.openHour = addOpenHour;
+    this.closeHour = addCloseHour;
+    this.salesPerHour = [];
+    this.TotalSales = 0;
+    
+    // render: function(){
+    //     var listParent = document.getElementById('sCookiesSold');
+    //     var createList = document.createElement('ul');
+    //     createList.setAttribute('id', this.storeLocation);
+    //     createList.textContent = this.storeLocation;
+    //     listParent.appendChild(createList);
+        
+    //     for(var i = 0; i < this.salesPerHour.length; i++){
+    //         var listElementParent = document.getElementById(this.storeLocation);
+    //         var createListElement = document.createElement('li')
+    //         createListElement.textContent = this.salesPerHour[i];
+    //         listElementParent.appendChild(createListElement);
+    //     }
+    // },
+
+    storeArray.push(this);
+    return storeArray;
+}
+
+addStore.prototype.randCustPerHour = function(){
+    //Code Taken from
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+    var min = Math.ceil(this.minCust);
+    var max = Math.floor(this.maxCust);
+
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+// This function requires Opening and Closing to be put in 24 hour system (Military Time)
+addStore.prototype.cookiesSoldPerHour = function(){
+    var csphStoreOpenHours = hourParse(this.openHour,this.closeHour)
+    var csphIndex = 0;
+
+    for(csphIndex = 0; csphIndex < csphStoreOpenHours.length; csphIndex++){
+        this.salesPerHour.push(Math.round(this.randCustPerHour() * this.avgSales));
+        this.TotalSales = this.TotalSales + this.salesPerHour[csphIndex];
+    }
+
+    return this.TotalSales;
+}
+
 function tableHourHeaders (thhStoreArray){
     var earliestOpen = 6;
     var latestClose = 20;
@@ -85,8 +100,6 @@ function tableHourHeaders (thhStoreArray){
     return hourParse(earliestOpen, latestClose);
 }
 
-
-//This function requires Opening and Closing to be put in 24 hour system (Military Time)
 // function cookiesSoldPerHour(csphStoreArray, csphOpening, csphClosing){
 //     var i = 0;
 //     var storeHours = [];
@@ -146,7 +159,8 @@ allStoreHourHeader = tableHourHeaders(storeArray);
 
 // cookiesSoldPerHour(storeArray, 6, 20);
 
-// for(var i = 0; i < storeArray.length; i++){
-//     storeArray[i].render();
-// }
+for(var i = 0; i < storeArray.length; i++){
+    storeArray[i].cookiesSoldPerHour();
+}
+
 // console.log(cookiesSoldPerHour(storeArray,6,20));
