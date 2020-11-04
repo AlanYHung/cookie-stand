@@ -3,6 +3,11 @@
 var storeArray = [];
 var allStoreHourHeader = [];
 var newStore;
+var i = 0;
+var j = 0;
+var salmonCookieTableID = 'scTableID'
+var sctRowID = [];
+var allStoreTotalSalesPerHour = [];
 
 function hourParse (hpStartHour, hpEndHour){
     var currHour = hpStartHour;
@@ -24,11 +29,38 @@ function hourParse (hpStartHour, hpEndHour){
             dispHour = currHour;
         }
 
-        hpStoreHourBr.push(`${dispHour} ${strAMPM}`);
+        hpStoreHourBr.push(`${dispHour}:00 ${strAMPM}`);
         currHour++;
     }
 
     return hpStoreHourBr
+}
+
+function jsElementCreater(parentElementID, elementToBeCreated, idOfNewElement, elementTextContent, elementPaddingAmount, elementBorderStyle, elementBorderWidth){
+    var elementParent = document.getElementById(parentElementID);
+    var newElement = document.createElement(elementToBeCreated);
+
+    if(idOfNewElement){
+        newElement.setAttribute('id',idOfNewElement);
+    }
+
+    if(elementTextContent){
+        newElement.textContent = elementTextContent;
+    }
+
+    if(elementPaddingAmount){
+        newElement.style.padding = elementPaddingAmount;
+    }
+
+    if(elementBorderStyle){
+        newElement.style.borderStyle = elementBorderStyle;
+    }
+
+    if(elementBorderWidth){
+        newElement.style.borderWidth = elementBorderWidth;
+    }
+
+    elementParent.appendChild(newElement);
 }
 
 function addStore (addStoreLocation, addOpenHour, addCloseHour, addMinCust, addMaxCust, addAvgSales){
@@ -77,9 +109,24 @@ addStore.prototype.cookiesSoldPerHour = function(){
     for(csphIndex = 0; csphIndex < csphStoreOpenHours.length; csphIndex++){
         this.salesPerHour.push(Math.round(this.randCustPerHour() * this.avgSales));
         this.TotalSales = this.TotalSales + this.salesPerHour[csphIndex];
-    }
 
-    return this.TotalSales;
+        if(isNaN(allStoreTotalSalesPerHour[csphIndex])){
+            allStoreTotalSalesPerHour.push(0);
+        }
+        allStoreTotalSalesPerHour[csphIndex] = allStoreTotalSalesPerHour[csphIndex] + this.salesPerHour[csphIndex];
+    }
+}
+
+addStore.prototype.render = function(orParentElementID){
+    var orIndex = 0;
+    var orPadding = '10px';
+    var orBorderType = 'solid';
+    var orBorderWidth = '1px';
+    jsElementCreater(orParentElementID,'th',false,this.storeLocation,orPadding,orBorderType,orBorderWidth);
+
+    for(orIndex=0; orIndex < this.salesPerHour.length; orIndex++){
+        jsElementCreater(orParentElementID,'td',false,this.salesPerHour[orIndex],orPadding,orBorderType,orBorderWidth)
+    }
 }
 
 function tableHourHeaders (thhStoreArray){
@@ -159,8 +206,33 @@ allStoreHourHeader = tableHourHeaders(storeArray);
 
 // cookiesSoldPerHour(storeArray, 6, 20);
 
-for(var i = 0; i < storeArray.length; i++){
+for(i = 0; i < storeArray.length; i++){
     storeArray[i].cookiesSoldPerHour();
 }
 
 // console.log(cookiesSoldPerHour(storeArray,6,20));
+jsElementCreater('sCookiesSold','tbody',salmonCookieTableID,false,false,false);
+
+for(i=0; i <= storeArray.length + 1; i++){
+    sctRowID[i] = `sctRow${i+1}`
+    jsElementCreater(salmonCookieTableID,'tr',sctRowID[i],false,false,false,false);
+
+    if(i === 0){
+        jsElementCreater(sctRowID[i],'th',false,false,'10px',false,false);
+        
+        for(j = 0; j < allStoreHourHeader.length; j++){
+            jsElementCreater(sctRowID[i],'th',false,allStoreHourHeader[j],'10px',false,false);
+        }
+    }else if (i === storeArray.length + 1){
+        jsElementCreater(sctRowID[i],'th',false,'Total','10px','solid','1px');
+        
+        for(j = 0; j < allStoreTotalSalesPerHour.length; j++){
+            jsElementCreater(sctRowID[i],'th',false,allStoreTotalSalesPerHour[j],'10px','solid','1px');
+        }
+    }else{
+        // console.log(sctRowID[i]);
+        storeArray[i-1].render(sctRowID[i]);
+    }
+}
+
+// var testElement = document.getElementById(salmonCookieTableID).style.margin = '5px';
