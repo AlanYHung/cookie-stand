@@ -190,7 +190,8 @@ function main(){
     }
   }
 
-  jsElementCreater(sctRowID[i-1],'th',false,allStoreTotalSales,'10px','solid','1px');
+  // Adds the Total of all hours and all stores to the table
+  jsElementCreater(sctRowID[sctRowID.length-1],'th',false,allStoreTotalSales,'10px','solid','1px');
 }
 
 main();
