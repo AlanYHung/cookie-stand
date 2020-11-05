@@ -1,4 +1,8 @@
+
+/*=========================================================================*/
 /* The Following Section manipulates the Home Page (index.html) */
+/*=========================================================================*/
+
 #Home-Page-Body{
   background-image: url("../images/fish.jpg");
 }
@@ -6,7 +10,8 @@
 #Home-Page-Header{
   background-image: url(../images/salmon.png);
   height: 246px;
-  width: 53%;
+  width: 787px;
+  margin-top: 230px;
   margin-left: 23.5%;
   text-align: center;
   line-height: 246px;
@@ -17,10 +22,11 @@
   animation-direction: alternate;
 }
 
-#Home-Store-Section-Header{
+#Home-Page-Navigation{
   background-color: white;
   font-size: 30px;
-  margin-left: 1%;
+  margin-top: 50px;
+  margin-left: 41%;
   width: 200px;
 }
 
@@ -43,24 +49,6 @@
   margin-bottom: 2%;
 }
 
-#Home-Merchandise-Header{
-  background-color: white;
-  font-size: 30px;
-  margin-left: 1%;
-  width: 200px;
-  margin-bottom: 2%;
-}
-
-#Home-Page-Footer{
-  background-color: gray;
-  width: 10%;
-  font-size: x-large;
-  text-align: center;
-  height: 50px;
-  line-height: 50px;
-  margin-top: 1%;
-  margin-left: 45%;
-}
 
 
 /* Animation Code Taken from */
@@ -74,13 +62,21 @@
   100% {color: blanchedalmond}
 }
 
+
+
+/*=========================================================================*/
 /* The Following Section manipulates the Sales Page (sales.html) */
+/*=========================================================================*/
+
 #Sales-Page-Body{
   background-image: url("../images/frosted-cookie.jpg");
 }
 
 #Sales-Page-Header{
   background-image: url("../images/chinook.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
   font-size: 80px;
   width: 65%;
   height: 185px;
@@ -88,7 +84,7 @@
   margin-top: 1%;
   text-align: center;
   line-height: 200px;
-  color: gold;
+  color: salmon;
 }
 
 #Salmon-Cookies-Sold{
@@ -110,7 +106,12 @@
   margin-left: 45%;
 }
 
+
+
+/*=========================================================================*/
 /* The Following Section manipulates the Stores Page (stores.html) */
+/*=========================================================================*/
+
 #Stores-Page-Header{
   font-size: 80px;
   width: 65%;
@@ -158,4 +159,37 @@
 
 #Sales-Page-White-Space{
   height: 100px;
+}
+
+
+
+/*=========================================================================*/
+/* The Following Section manipulates the Stores Page (stores.html) */
+/*=========================================================================*/
+
+#Merchandise-Page-Header{
+  font-size: 80px;
+  width: 65%;
+  height: 185px;
+  margin-left: 17.5%;
+  margin-top: 1%;
+  text-align: center;
+  line-height: 200px;
+}
+
+#Merchandise-Page-Construction{
+  background-color: black;
+  animation-duration: 800ms;
+  animation-name: blink;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#Merchandise-Page-Footer{
+  height: 246px;
+  width: 787px;
+  margin-left: 23.5%;
+  text-align: center;
+  line-height: 246px;
+  font-size: 20px;
 }
