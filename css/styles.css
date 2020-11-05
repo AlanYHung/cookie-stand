@@ -1,0 +1,111 @@
+/* The Following Section manipulates the Home Page (index.html) */
+#Home-Page-Body{
+  background-image: url("../images/fish.jpg");
+}
+
+#Home-Page-Header{
+  background-image: url(../images/salmon.png);
+  height: 246px;
+  width: 53%;
+  margin-left: 23.5%;
+  text-align: center;
+  line-height: 246px;
+  font-size: 40px;
+  animation-duration: 400ms;
+  animation-name: blink;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#Home-Store-Section-Header{
+  background-color: white;
+  font-size: 30px;
+  margin-left: 1%;
+  width: 200px;
+}
+
+#Home-Store-Section{
+  display: inline-flex;
+  width: 1080px;
+}
+
+#Home-Store-Section article{
+  margin-top: 2%;
+  margin-left: 2%;
+  margin-bottom: 2%;
+  background-color: black;
+  color: white;
+  width: 200px;
+}
+
+#Home-Family-Img{
+  margin-left: 22%;
+  margin-bottom: 2%;
+}
+
+#Home-Merchandise-Header{
+  background-color: white;
+  font-size: 30px;
+  margin-left: 1%;
+  width: 200px;
+  margin-bottom: 2%;
+}
+
+#Home-Page-Footer{
+  background-color: gray;
+  width: 10%;
+  font-size: x-large;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  margin-top: 1%;
+  margin-left: 45%;
+}
+
+
+/* Animation Code Taken from */
+/* https://stackoverflow.com/questions/22490273/text-blink-from-one-color-to-another-css-or-jquery */
+/* https://www.w3schools.com/cssref/css3_pr_animation-keyframes.asp */
+@keyframes blink {
+  0% {color: salmon;}
+  25% {color: gold}
+  50% {color: hotpink}
+  75% {color: coral}
+  100% {color: blanchedalmond}
+}
+
+/* The Following Section manipulates the Sales Page (sales.html) */
+#Sales-Page-Body{
+  background-image: url("../images/frosted-cookie.jpg");
+}
+
+#Sales-Page-Header{
+  background-image: url("../images/chinook.jpg");
+  font-size: 80px;
+  width: 65%;
+  height: 185px;
+  margin-left: 17.5%;
+  margin-top: 1%;
+  text-align: center;
+  line-height: 200px;
+  color: gold;
+}
+
+#Salmon-Cookies-Sold{
+  background-color: white;
+  width: 80%;
+  margin-top: 5%;
+  margin-left: 10%;
+  padding: 10px;
+}
+
+#Sales-Page-Footer{
+  background-color: salmon;
+  width: 10%;
+  font-size: x-large;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  margin-top: 1%;
+  margin-left: 45%;
+}
