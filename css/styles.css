@@ -89,18 +89,34 @@
 
 #Salmon-Cookies-Sold{
   background-color: white;
-  width: 80%;
+  width: 60%;
   margin-top: 5%;
-  margin-left: 10%;
+  margin-left: 350px;
   padding: 10px;
 }
 
-#Sales-Page-Footer{
+#Sales-Page-Add-Store-Form{
+  background-color: black;
+  color: salmon;
+  margin-top: 50px;
+  display: table-caption;
+  margin-left: 360%;
+  width: 210px;
+  padding: 10px;
+  text-align: center;
+  height: 300px;
+}
+
+#Sales-Page-Add-Store-Form input{
+  margin-bottom: 5px;
+}
+
+#Sales-Page-Navigation{
   background-color: salmon;
   width: 10%;
   font-size: x-large;
   text-align: center;
-  height: 50px;
+  height: 150px;
   line-height: 50px;
   margin-top: 1%;
   margin-left: 45%;
