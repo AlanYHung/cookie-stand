@@ -1,10 +1,21 @@
+/*=========================================================================*/
+/* The Following Section is for Universal Formatting */
+/*=========================================================================*/
+
+header{
+  font-family: 'Patrick Hand', cursive;
+}
+
+body{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
 
 /*=========================================================================*/
 /* The Following Section manipulates the Home Page (index.html) */
 /*=========================================================================*/
 
 #Home-Page-Body{
-  background-image: url("../images/fish.jpg");
+  background-image: url(../images/fish.jpg);
 }
 
 #Home-Page-Header{
@@ -27,7 +38,7 @@
   font-size: 30px;
   margin-top: 50px;
   margin-left: 41%;
-  width: 200px;
+  width: 210px;
 }
 
 #Home-Store-Section{
@@ -89,30 +100,36 @@
 
 #Store-Sales{
   display: inline-flex;
+  margin-top: 100px;
+  margin-left: 50px;
 }
 
 #Sales-Page-Add-Store-Form{
   background-color: black;
   color: salmon;
-  margin-top: 50px;
   display: table-caption;
   margin-left: 30px;
-  width: 210px;
+  width: 260px;
+  height: 275px;
   padding: 10px;
   text-align: center;
-  height: 300px;
+}
+
+#Sales-Page-Add-Store-Form input{
+  margin-bottom: 5px;
+  width: 230px;
+}
+
+input#SubmitButton{
+  width: 70px;
 }
 
 #Salmon-Cookies-Sold{
   background-color: white;
   width: 60%;
-  margin-top: 5%;
-  margin-left: 350px;
+  margin-left: 60px;
   padding: 10px;
-}
-
-#Sales-Page-Add-Store-Form input{
-  margin-bottom: 5px;
+  font-family: sans-serif;
 }
 
 #Sales-Page-Navigation{
@@ -123,7 +140,11 @@
   height: 150px;
   line-height: 50px;
   margin-top: 1%;
-  margin-left: 45%;
+  margin-left: 800px;
+  margin-bottom: 20px;
+  border: black;
+  border-style: solid;
+  border-width: 1px;
 }
 
 
