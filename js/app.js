@@ -108,9 +108,6 @@ AddStore.prototype.cookiesSoldPerHour = function(){
     if(isNaN(allStoreTotalSalesPerHour[csphIndex])){
       allStoreTotalSalesPerHour.push(0);
     }
-    console.log(allStoreTotalSalesPerHour);
-    //console.log('Index',csphIndex);
-    //console.log('Sales',this.salesPerHour[csphIndex]);
     allStoreTotalSalesPerHour[csphIndex] += this.salesPerHour[csphIndex];
   }
 }
@@ -153,7 +150,7 @@ function tableHourHeaders (thhStoreArray){ // thh = tableHourHeaders to denote t
   return hourParse(earliestOpen, latestClose);
 }
 
-function main(){
+function main(eventInvoked){
   allStoreTotalSalesPerHour = [];
   allStoreTotalSales = 0;
   // Generates the Table Hour Header
@@ -161,9 +158,11 @@ function main(){
   allStoreHourHeader.push('Total');
 
   // Generates the Sales Data
-  for(i = 0; i < storeArray.length; i++){
-    storeArray[i].cookiesSoldPerHour();
-    allStoreTotalSales += storeArray[i].totalSales
+  if(!eventInvoked){
+    for(i = 0; i < storeArray.length; i++){
+      storeArray[i].cookiesSoldPerHour();
+      allStoreTotalSales += storeArray[i].totalSales
+    }
   }
 
   // All the Following Code is for Rendering the Table
@@ -206,8 +205,9 @@ function formSubmitAction(event){
   var scTable = document.getElementById(salmonCookieTableID); //sc stands for Salmon Cookie
 
   new AddStore(newStoreLocation,newOpenHour,newCloseHour,newMinCust,newMaxCust,newAvgSales)
+  storeArray[storeArray.length-1].cookiesSoldPerHour();
   scTable.innerHTML='';
-  main();
+  main(true);
 }
 
 salesFormElement.addEventListener('submit', formSubmitAction)
@@ -217,4 +217,4 @@ new AddStore('Tokyo',6,20,3,24,1.2);
 new AddStore('Dubai',6,20,11,38,3.7);
 new AddStore('Paris',6,20,20,38,2.3);
 new AddStore('Lima',6,20,2,16,4.6);
-main();
+main(false);

@@ -87,12 +87,8 @@
   color: salmon;
 }
 
-#Salmon-Cookies-Sold{
-  background-color: white;
-  width: 60%;
-  margin-top: 5%;
-  margin-left: 350px;
-  padding: 10px;
+#Store-Sales{
+  display: inline-flex;
 }
 
 #Sales-Page-Add-Store-Form{
@@ -100,11 +96,19 @@
   color: salmon;
   margin-top: 50px;
   display: table-caption;
-  margin-left: 360%;
+  margin-left: 30px;
   width: 210px;
   padding: 10px;
   text-align: center;
   height: 300px;
+}
+
+#Salmon-Cookies-Sold{
+  background-color: white;
+  width: 60%;
+  margin-top: 5%;
+  margin-left: 350px;
+  padding: 10px;
 }
 
 #Sales-Page-Add-Store-Form input{
