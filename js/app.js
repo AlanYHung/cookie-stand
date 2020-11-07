@@ -151,8 +151,6 @@ function tableHourHeaders (thhStoreArray){ // thh = tableHourHeaders to denote t
 }
 
 function main(eventInvoked){
-  allStoreTotalSalesPerHour = [];
-  allStoreTotalSales = 0;
   // Generates the Table Hour Header
   allStoreHourHeader = tableHourHeaders(storeArray);
   allStoreHourHeader.push('Total');
@@ -207,6 +205,7 @@ function formSubmitAction(event){
   new AddStore(newStoreLocation,newOpenHour,newCloseHour,newMinCust,newMaxCust,newAvgSales)
   storeArray[storeArray.length-1].cookiesSoldPerHour();
   scTable.innerHTML='';
+  allStoreTotalSales += storeArray[storeArray.length-1].totalSales
   main(true);
 }
 
